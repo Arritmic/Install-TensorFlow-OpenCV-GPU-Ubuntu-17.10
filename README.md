@@ -205,7 +205,7 @@ Finally, build the pip package:
 	
 	bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package 
 
-The build might take upto an hour. If it fails to build, you must clean your build using the following command and configure the build once again.
+The build might take upto an hour. If it fails to build, you must clean your build using the following command and configure the build once again. (In this point one of the posible error can be related to the use of the moc library in python ("ImportError: No module named mock"), because we are using python 2.7, and mock has been included in the unittest module (since Python3.3), and can be imported by import unittest.mock. So, for solving it, it is needed to install moc: "pip install mock")
 
 	bazel clean --expunge
 	./configure
